@@ -1,0 +1,52 @@
+.maiHeader {
+  font-weight: bolder;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  height: 80px;
+}
+
+.actionBtn {
+  height: -20px;
+  display: flex;
+  position: absolute;
+  right: 0;
+}
+
+.links span {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+  background-color: gold;
+  clip-path: polygon(
+    50% 0%,
+    61.8% 38.2%,
+    100% 38.2%,
+    69.1% 61.8%,
+    80.9% 100%,
+    50% 76.4%,
+    19.1% 100%,
+    30.9% 61.8%,
+    0% 38.2%,
+    38.2% 38.2%
+  );
+  position: absolute;
+  animation: floatStar 5s linear infinite;
+}
+
+@keyframes floatStar {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}

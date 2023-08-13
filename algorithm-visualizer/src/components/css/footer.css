@@ -1,0 +1,12 @@
+.mainFooter {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+}
