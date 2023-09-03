@@ -1,0 +1,25 @@
+.mainWrapper {
+  background-color: red;
+}
+
+.custom-select {
+  display: block;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.custom-select:hover {
+  border-color: #007bff;
+}
+
+.custom-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
