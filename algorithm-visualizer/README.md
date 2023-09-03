@@ -61,7 +61,7 @@ Contributions are welcome! Please follow these guidelines when contributing to t
 
 ## Contact
 
-If you have any questions, suggestion, or feedback, please feel free to reach out to us at [maurya's gmail] or [deepsolanki3010@gmail.com]
+If you have any questions, suggestion, or feedback, please feel free to reach out to us at [madityauma20@gmail.com] or [deepsolanki3010@gmail.com]
 
 ## Authors
 
