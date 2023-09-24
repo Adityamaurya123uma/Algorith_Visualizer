@@ -6,9 +6,7 @@ const Footer = () => {
     <div className="mainFooter">
       <hr className="separator" />
       <div className="copyright">
-        <span>
-          Copyright © 2023 Algorithm Visualizer. Built with 💜 by Aditya Maurya.
-        </span>
+        <span>Copyright © 2023 Algorithm Visualizer. Built with 💜.</span>
       </div>
     </div>
   );

@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import CodeView from "./codeview";
+// import CodeView from "./codeview";
+import "./controlpanel.css";
+import Animationzone from "./animationzone";
+import {
+  mergeSort,
+  quickSort,
+  bubbleSort,
+  selectionSort,
+  radixSort,
+} from "./method";
 
 const ControlPanel = () => {
   const [selectedAlgorithm, setselectedAlgorithm] = useState("");
@@ -15,37 +24,35 @@ const ControlPanel = () => {
     setselectedAlgorithm(event.target.value);
   };
 
-  const code = `
-    function bubbleSort(arr) {
-    const n = arr.length;
-    let swapped;
-    do {
-        swapped = false;
-        for (let i = 0; i < n - 1; i++) {
-            if (arr[i] > arr[i + 1]) {
-                [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
-                swapped = true;
-            }
-        }
-    } while (swapped);
-    return arr;
-    }
-  `;
+  // TODO - Find more efficient way to do this.
+
+  const algorithms = {
+    "Selection Sort": selectionSort,
+    "Merge Sort": mergeSort,
+    "Quick Sort": quickSort,
+    "Bubble Sort": bubbleSort,
+    "Radix Sort": radixSort,
+  };
+
+  // TODO - Improve
+  const code = algorithms[selectedAlgorithm] || `Please select an algorithm`;
 
   return (
     <div className="codeviewWrapper">
-      <div>
+      <div className="algorithm-type">
         <h1>Sorting Algorithm</h1>
       </div>
       <div className="select-container">
-        <label htmlFor="custom-select">Choose an option:</label>
+        <label className="dropdown-label" htmlFor="custom-select">
+          Choose an Option:
+        </label>
         <select
           id="custom-select"
           className="custom-select"
           value={selectedAlgorithm}
           onChange={handleSelection}
         >
-          <option value="">Select an option</option>
+          <option value="Nothing Selected">Select an option</option>
           {options.map((option, index) => (
             <option key={index} value={option}>
               {option}
@@ -53,9 +60,13 @@ const ControlPanel = () => {
           ))}
         </select>
       </div>
-      <span>{selectedAlgorithm}</span>
+      <div className="selected-algorithm">
+        <span>You selected -- </span>
+        <span>{selectedAlgorithm}</span>
+      </div>
       <div>
-        <CodeView code={code} language="javascript" />
+        {/* <CodeView code={code} language="javascript" /> Need to find a proper place to place this component*/}
+        <Animationzone code={code} />
       </div>
     </div>
   );

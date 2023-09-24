@@ -1,0 +1,31 @@
+.codeview {
+  margin: 20px;
+}
+
+.language-label {
+  font-size: 22px;
+  font-weight: bolder;
+  color: grey;
+}
+
+.language-javascript {
+  height: 600px;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #424242;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color of the thumb when hovered */
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #1c1b1b; /* Color of the thumb when pressed */
+}

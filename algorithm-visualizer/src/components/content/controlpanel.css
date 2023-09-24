@@ -1,17 +1,40 @@
-.mainWrapper {
-  background-color: red;
+.codeviewWrapper {
+  float: left;
+  width: 50%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.algorithm-type {
+  text-align: center;
+}
+
+.dropdown-label {
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 20px;
+  padding-right: 15px;
 }
 
 .custom-select {
-  display: block;
-  padding: 10px;
+  padding: 5px;
   font-size: 16px;
+  font-weight: bold;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #fff;
-  color: #333;
+  background-color: var(--body_background);
+  color: var(--body_color);
   cursor: pointer;
   transition: border-color 0.3s ease-in-out;
+}
+
+.selected-algorithm {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .custom-select:hover {

@@ -1,7 +1,6 @@
 .mainFooter {
   width: 100%;
-  position: fixed;
-  bottom: 0;
+  position: absolute;
 }
 
 .copyright {
