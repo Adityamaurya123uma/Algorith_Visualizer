@@ -6,7 +6,6 @@ const Content = () => {
   return (
     <div className="mainWrapper">
       <ControlPanel />
-      
     </div>
   );
 };

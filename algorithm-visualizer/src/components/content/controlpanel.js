@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import CodeView from "./codeview";
+import CodeView from "./codeview";
 import "./controlpanel.css";
 import Animationzone from "./animationzone";
 import {
@@ -64,9 +64,13 @@ const ControlPanel = () => {
         <span>You selected -- </span>
         <span>{selectedAlgorithm}</span>
       </div>
-      <div>
-        {/* <CodeView code={code} language="javascript" /> Need to find a proper place to place this component*/}
+      <div className="main-frame">
+        <div>
+          <CodeView code={code} language="javascript" />
+        </div>
+        <div>
         <Animationzone code={code} />
+        </div>
       </div>
     </div>
   );
