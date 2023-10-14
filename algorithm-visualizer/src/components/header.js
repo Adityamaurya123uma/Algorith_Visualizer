@@ -11,10 +11,10 @@ const Header = () => {
       <div className="actionBtn">
         <div className="links">
           <span>
-            <i class="fab fa-github fa-xs"></i>
+            <i className="fab fa-github fa-xs"></i>
           </span>
           <span>
-            <i class="fab fa-linkedin fa-xs"></i>
+            <i className="fab fa-linkedin fa-xs"></i>
           </span>
         </div>
         <div className="themeChange">
