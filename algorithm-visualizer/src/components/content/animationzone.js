@@ -1,81 +1,117 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import "./animationzone.css";
 
-const Animationzone = ({ code }) => {
-  const [array, setArray] = useState([]);
-  const [settings, setSettings] = useState({
-    speed: 0,
-    length: 20,
-  });
-
-  const handleSpeed = (ev) => {
-    setSettings({ ...settings, speed: parseInt(ev.target.value) });
-  }
-  const handleLength = (ev) => {
-    setSettings({ ...settings, length: parseInt(ev.target.value) });
+class SortingVisualizer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      array: [],
+      arraySize: 25,
+    };
   }
 
-  const generateRandomArray = (size) => {
+  generateArray() {
     const newArray = [];
-    for (let i = 0; i < size; i++) {
-      newArray.push(Math.floor(Math.random() * (300 - 5 + 1)) + 5);
+    for (let i = 1; i <= this.state.arraySize; i++) {
+      newArray.push(Math.ceil(2 * (Math.floor(Math.random() * 100) + 10)));
     }
-    setArray(newArray);
-  };
+    this.setState({ array: newArray });
+  }
 
-  // Currently only bubble sort is implemented. Need to Find a way to implement more algorithms.
-  const Sort = async () => {
-    const arrayCopy = [...array];
-    for (let i = 0; i < arrayCopy.length - 1; i++) {
-      for (let j = 0; j < arrayCopy.length - i - 1; j++) {
-        if (arrayCopy[j] > arrayCopy[j + 1]) {
-          const temp = arrayCopy[j];
-          arrayCopy[j] = arrayCopy[j + 1];
-          arrayCopy[j + 1] = temp;
+  async bubbleSort() {
+    const array = this.state.array.slice();
+    let animations = [];
+    let swapped;
 
-          const { speed } = settings
-          const delay = 1000 - speed;
-          await new Promise(
-            (resolve) =>
-              setTimeout(() => {
-                setArray([...arrayCopy]);
-                resolve();
-              }, delay) // Speed
-          );
+    for (let i = 0; i < array.length - 1; i++) {
+      swapped = false;
+      for (let j = 0; j < array.length - i - 1; j++) {
+        animations.push([j, j + 1, "compare"]);
+        if (array[j] > array[j + 1]) {
+          animations.push([j, j + 1, "swap"]);
+          [array[j], array[j + 1]] = [array[j + 1], array[j]];
+          swapped = true;
         }
       }
+      if (!swapped) break;
     }
-  };
 
-  return (
-    <div className="sorting-visualizer">
-      <div className="input-controls">
-        <div className="input-group">
-          <label htmlFor="array-length">Array Length</label>
-          <input type="range" name="array-length" min="20" max="80" step="10" value={settings.length} onChange={handleLength}/>
-        </div>
-        <div className="input-group">
-          <label htmlFor="sorting-speed">Speed</label>
-          <input type="range" name="sorting-speed" min="0" max="900" step="100" value={settings.speed} onChange={handleSpeed}/>
-        </div>
-      </div>
-      <div className="array-container">
-        {array.map((value, idx) => (
-          <div
-            className="array-view"
-            key={idx}>
-            {/* does not fit in properly with large array input
-            <div className="array-value">{value}</div> */}
-            <div className="array-bar" style={{ height: `${value}px` }}></div>
-          </div>
-        ))}
-      </div>
-      <div className="button-container">
-        <button onClick={() => generateRandomArray(settings.length)}>Generate Array</button>
-        <button onClick={() => Sort()}>Sort</button>
-      </div>
-    </div>
-  );
-};
+    for (let i = 0; i < animations.length; i++) {
+      const [a, b, type] = animations[i];
+      setTimeout(() => {
+        this.animateBars(a, b, type);
+      }, i * this.state.speed);
+    }
+  }
 
-export default Animationzone;
+  animateBars(a, b, type) {
+    const arrayBars = document.getElementsByClassName("bar");
+    const barA = arrayBars[a];
+    const barB = arrayBars[b];
+
+    if (type === "compare") {
+      setTimeout(() => {
+        barA.style.backgroundColor = "red";
+        barB.style.backgroundColor = "red";
+      }, 0);
+      setTimeout(() => {
+        barA.style.backgroundColor = "#2196F3";
+        barB.style.backgroundColor = "#2196F3";
+      }, 300);
+    } else if (type === "swap") {
+      setTimeout(() => {
+        const tempHeight = barA.style.height;
+        barA.style.height = barB.style.height;
+        barB.style.height = tempHeight;
+      }, 0);
+    }
+  }
+
+  handleSpeedChange(e) {
+    const newSpeed = parseInt(e.target.value, 10);
+    this.setState({ speed: newSpeed });
+  }
+
+  handleArraySizeChange() {
+    this.generateArray();
+  }
+
+  render() {
+    const { array, speed } = this.state;
+
+    return (
+      <div className="sorting-visualizer">
+        <div className="array-container">
+          {array.map((value, index) => (
+            <div className="array-bar" key={index}>
+              <span className="bar-number">{value}</span>
+              <div className="bar" style={{ height: `${value}px` }}></div>
+            </div>
+          ))}
+        </div>
+        <button onClick={() => this.generateArray()}>Generate Array</button>
+        <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+        {/* TODO:Flex direction */}
+        <input
+          type="range"
+          min="1"
+          max="10"
+          value={speed}
+          onChange={(e) => this.handleSpeedChange(e)}
+        />
+        <div className="speed-label">Speed: {speed}</div>
+        <input
+          type="range"
+          min="2"
+          max="25"
+          value={this.state.arraySize}
+          onChange={(e) => this.setState({ arraySize: e.target.value })}
+          onInput={() => this.handleArraySizeChange()}
+        />
+        <div className="speed-label">Array Size: {this.state.arraySize}</div>
+      </div>
+    );
+  }
+}
+
+export default SortingVisualizer;

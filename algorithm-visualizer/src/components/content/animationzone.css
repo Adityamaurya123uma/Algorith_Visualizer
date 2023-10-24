@@ -2,84 +2,69 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
 }
 
 .array-container {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  height: 400px;
-  width: 100%;
+  height: 250px;
 }
 
-.input-controls {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.input-group {
-  margin: 10px;
-}
-
-.input-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.input-group input[type="range"] {
-  width: 100%;
-  height: 2px;
-  background-color: #ccc;
-  border: none; 
-  border-radius: 5px;
-  appearance: none;
-}
-
-.input-group input[type="range"]::-webkit-slider-thumb {
-  width: 20px;
-  height: 20px;
-  background-color: #007BFF;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  -webkit-appearance: none;
-}
-
-.input-group input[type="range"]::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  background-color: #007BFF;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.array-view {
-  width: 20px;
-  margin: 0 1px;
-  background-color: #3498db;
+.array-bar {
   position: relative;
-  display: flex;
-  align-items: center;
+  text-align: center;
+  transform: scaleY(-1);
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
-.array-view .array-value {
+.bar {
+  width: 30px;
+  margin: 0 2px;
+  background-color: #2196f3;
+  align-items: flex-end;
+  display: inline-block;
+}
+
+.bar-number {
   position: absolute;
-  top: -15px;
-  font-size: 10px;
-  transform: rotate(-90deg);
+  width: 100%;
+  font-size: 12px;
+  transform: scaleY(-1);
 }
 
-.button-container {
-  margin-top: 20px;
-}
 
 button {
-  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
   padding: 10px 20px;
+  margin: 20px 0px 20px 0px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:active {
+  background-color: #3e8e41;
+}
+
+.bar.compare {
+  background-color: red;
+}
+
+.bar.swap {
+  transform: translate(0, 10px);
+}
+
+input[type="range"] {
+  width: 100px;
   margin: 0 10px;
+}
+
+.speed-label {
+  font-size: 14px;
 }
