@@ -12,8 +12,8 @@ class SortingVisualizer extends Component {
 
   generateArray() {
     const newArray = [];
-    for (let i = 1; i < this.state.arraySize; i++) {
-      newArray.push(2 * (Math.floor(Math.random() * 100) + 10));
+    for (let i = 1; i <= this.state.arraySize; i++) {
+      newArray.push(Math.ceil(2 * (Math.floor(Math.random() * 100) + 10)));
     }
     this.setState({ array: newArray });
   }
@@ -91,6 +91,7 @@ class SortingVisualizer extends Component {
         </div>
         <button onClick={() => this.generateArray()}>Generate Array</button>
         <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+        {/* TODO:Flex direction */}
         <input
           type="range"
           min="1"
@@ -101,7 +102,7 @@ class SortingVisualizer extends Component {
         <div className="speed-label">Speed: {speed}</div>
         <input
           type="range"
-          min="1"
+          min="2"
           max="25"
           value={this.state.arraySize}
           onChange={(e) => this.setState({ arraySize: e.target.value })}
